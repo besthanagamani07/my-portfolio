@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>B Nagamani | Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">    
+
+<style>
+/* Reset + Global */
+*{ margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body{ background:#070B0F; color:white; overflow-x:hidden; }
+
+/* Animated Background */
+body::before{
+    content:""; position:fixed; width:300%; height:300%;
+    background:radial-gradient(circle,#00eaff40,#ff00c840,#000);
+    filter:blur(120px); animation:spin 20s linear infinite;
+    z-index:-1;
+}
+@keyframes spin{ from{transform:rotate(0);} to{transform:rotate(360deg);} }
+
+/* Scroll Progress Bar */
+#progressBar{
+    position:fixed; top:0; left:0; width:0%; height:5px;
+    background:linear-gradient(45deg,#00eaff,#ff00c8);
+    z-index:9999;
+}
+
+/* Cursor Glow Trail */
+.cursor{
+    position:fixed; width:18px; height:18px; border-radius:50%;
+    background:#00eaff; pointer-events:none; filter:blur(20px);
+    animation:trail .3s linear forwards;
+}
+@keyframes trail{ from{opacity:1;} to{opacity:0; transform:scale(0);} }
+
+/* Header */
+header{
+    width:100%; padding:20px 50px; display:flex; justify-content:space-between;
+    align-items:center; position:fixed; top:0; z-index:1000;
+    background:#0b0f14cc; backdrop-filter:blur(10px);
+}
+.logo{
+    font-size:32px; font-weight:700;
+    background:linear-gradient(45deg,#00eaff,#ff00c8);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+nav a{
+    margin-left:25px; font-size:18px; color:white; text-decoration:none;
+    transition:.3s;
+}
+nav a:hover{ color:#00eaff; text-shadow:0 0 12px #00eaff; }
+
+/* Sections */
+section{ padding:150px 50px 100px; }
+
+/* Typing Animation */
+.typing{
+    font-size:50px; font-weight:700; white-space:nowrap; overflow:hidden;
+    color:#00eaff; border-right:3px solid white;
+    animation:typing 4s steps(40,end) forwards, blink .7s infinite;
+}
+@keyframes typing{ from{width:0;} to{width:700px;} }
+@keyframes blink{ 50%{border-color:transparent;} }
+
+/* Key Points */
+.key-points{ margin-top:20px; font-size:20px; line-height:32px; }
+.key-points div{ display:flex; gap:10px; }
+.key-points span{ color:#00eaff; font-size:22px; }
+
+/* HOME SECTION (UPDATED) */
+#home{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:40px;
+}
+
+.home-img{
+    margin-left:auto;
+}
+
+.home-img img{
+    width:360px;
+    border-radius:20px;
+    border:3px solid #00eaff;
+    box-shadow:0 0 35px #00eaff;
+    animation:float 4s infinite ease-in-out;
+}
+
+@keyframes float{ 0%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
+
+/* Buttons */
+button{
+    padding:12px 24px; border:none; border-radius:12px;
+    background:linear-gradient(45deg,#00eaff,#ff00c8);
+    color:black; font-size:18px; font-weight:600; cursor:pointer;
+    box-shadow:0 0 12px #00eaff; transition:.3s;
+}
+button:hover{ transform:scale(1.07); box-shadow:0 0 20px #ff00c8; }
+
+/* Titles */
+h2{
+    font-size:42px; background:linear-gradient(45deg,#00eaff,#ff00c8);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.line{
+    width:150px; height:4px; background:linear-gradient(45deg,#00eaff,#ff00c8);
+    border-radius:20px; margin-bottom:25px;
+}
+
+/* Skills */
+.skills-container{ display:flex; flex-wrap:wrap; gap:20px; }
+.skill{
+    padding:15px 25px; background:#0d1117; border-radius:10px;
+    border:1px solid #00eaff; transition:.3s; font-size:18px;
+}
+.skill:hover{ transform:scale(1.12); box-shadow:0 0 20px #00eaff; }
+
+/* About */
+.about-box{
+    background:#0d1117; padding:25px; border-radius:15px;
+    border-left:5px solid #00eaff; line-height:30px;
+    box-shadow:0 0 20px #00eaff20;
+}
+
+/* Certificates & Achievements */
+.list-box{
+    background:#0d1117; padding:25px; border-radius:15px;
+    border-left:5px solid #ff00c8; line-height:32px;
+}
+
+/* Services */
+.services{
+    display:flex; flex-wrap:wrap; gap:20px;
+}
+.service-card{
+    width:260px; background:#0d1117; padding:20px; border-radius:15px;
+    border:1px solid #00eaff; text-align:center; transition:.4s;
+}
+.service-card:hover{
+    transform:translateY(-10px) scale(1.05);
+    box-shadow:0 0 25px #ff00c8;
+}
+
+/* Projects */
+.project-box{
+    background:#0d1117; padding:20px; border-radius:12px;
+    margin-bottom:25px; border-left:5px solid #00eaff;
+    transition:.3s; transform-style:preserve-3d;
+}
+.project-box:hover{
+    transform:perspective(600px) rotateY(10deg) scale(1.05);
+    box-shadow:0 0 25px #ff00c8; border-left:5px solid #ff00c8;
+}
+.project-box h3{ color:#00eaff; }
+
+/* Contact */
+.contact input,.contact textarea{
+    width:100%; padding:12px; margin-top:10px;
+    background:#000; border:1px solid #00eaff; color:white;
+    border-radius:10px; font-size:17px;
+}
+
+/* Floating Chatbot Button */
+.chatbot-btn{
+    position:fixed; right:25px; bottom:90px;
+    width:60px; height:60px; background:#00eaff;
+    border-radius:50%; display:flex; justify-content:center; align-items:center;
+    font-size:32px; cursor:pointer; box-shadow:0 0 15px #00eaff;
+    z-index:9999;
+}
+
+/* Chatbot Window */
+.chatbot-window{
+    position:fixed; right:25px; bottom:160px;
+    width:330px; height:420px; background:#0d1117;
+    border:2px solid #00eaff; border-radius:12px;
+    display:none; flex-direction:column;
+    box-shadow:0 0 20px #00eaff;
+    overflow:hidden; z-index:9999;
+}
+.chat-header{
+    padding:12px; background:#00eaff; color:black;
+    font-size:18px; font-weight:600; text-align:center;
+}
+.chat-body{
+    flex:1; padding:10px; overflow-y:auto; font-size:16px;
+}
+.chat-input{
+    display:flex; border-top:1px solid #00eaff;
+}
+.chat-input input{
+    flex:1; padding:10px; border:none; outline:none;
+    background:#000; color:white;
+}
+.chat-input button{
+    width:80px; background:#00eaff; color:black; border:none;
+}
+
+/* Footer */
+footer{
+    text-align:center; padding:20px; background:#0b0f14cc;
+    margin-top:30px;
+}
+</style>
+</head>
+<body>
+
+<!-- Scroll Progress -->
+<div id="progressBar"></div>
+
+<!-- Floating Chatbot -->
+<div class="chatbot-btn" onclick="toggleChat()">🤖</div>
+
+<div class="chatbot-window" id="chatWindow">
+    <div class="chat-header">AI Assistant</div>
+    <div class="chat-body" id="chatBody">
+        <p><b>Bot:</b> Hello! I'm your assistant. How can I help?</p>
+    </div>
+    <div class="chat-input">
+        <input id="userInput" placeholder="Type here...">
+        <button onclick="sendMsg()">Send</button>
+    </div>
+</div>
+
+<!-- Dark Mode -->
+<button id="modeToggle">🌙 Dark Mode</button>
+
+<!-- Cursor Glow -->
+<script>
+document.addEventListener("mousemove", e=>{
+    let c=document.createElement("div");
+    c.className="cursor"; c.style.left=e.pageX+"px"; c.style.top=e.pageY+"px";
+    document.body.appendChild(c); setTimeout(()=>c.remove(),300);
+});
+</script>
+
+<!-- Header -->
+<header>
+    <div class="logo">Nagamani</div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#certs">Certificates</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+<section id="home">
+
+    <div>
+        <div class="typing">B Nagamani</div>
+
+        <div class="key-points">
+            <div><span>✔</span> CSE Student (2026 Passout)</div>
+            <div><span>✔</span> Python & Java Developer</div>
+            <div><span>✔</span> React JS Frontend Developer</div>
+            <div><span>✔</span> AI & ML Enthusiast</div>
+            <div><span>✔</span> Strong Problem Solver</div>
+        </div>
+
+        <br>
+        <button onclick="location.href='resume.pdf'">📄 Download Resume</button>
+        <button onclick="location.href='mycard.vcf'">📇 Download vCard</button>
+    </div>
+
+    <div class="home-img">
+        <img src="C:\Users\besth\Downloads\WhatsApp Image 2026-02-08 at 3.03.59 PM.jpeg" alt="Profile Photo">
+    </div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <h2>About Me</h2>
+    <div class="line"></div>
+
+    <div class="about-box">
+        I am a passionate Computer Science AI & ML student with strong skills in Python, Java, React JS,
+        and AI/ML fundamentals. I enjoy building real-world applications and solving complex problems.
+        My goal is to become a top software engineer and contribute to impactful technological
+        innovations.
+    </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certs">
+    <h2>Certificates</h2>
+    <div class="line"></div>
+
+    <div class="list-box">
+        <ul>
+            <li>AI Internship – Skill Dizer</li>
+            <li>Python Programming Certification – Udemy</li>
+            <li>Full-Stack Web Development – Coursera</li>
+            <li>SQL & Database Foundations – HackerRank</li>
+            <li>Git & GitHub Version Control – CodeWithMosh</li>
+        </ul>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+    <h2>Achievements</h2>
+    <div class="line"></div>
+
+    <div class="list-box">
+        <ul>
+            <li>Created 10+ real world projects</li>
+            <li>Developed AI Automation Agent</li>
+            <li>Built an online coding practice platform</li>
+            <li>Recognized for strong problem-solving skills</li>
+            <li>Consistent performer in coding competitions</li>
+        </ul>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <h2>My Services</h2>
+    <div class="line"></div>
+
+    <div class="services">
+        <div class="service-card">Web Development (HTML, CSS, JS, React)</div>
+        <div class="service-card">Python Application Development</div>
+        <div class="service-card">Machine Learning Model Creation</div>
+        <div class="service-card">Database Design (SQL)</div>
+        <div class="service-card">UI/UX Frontend Designing</div>
+        <div class="service-card">Automation & AI-based Tools</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="line"></div>
+
+    <div class="project-box">
+        <h3>Fake News Detection (NLP + ML)</h3>
+        <p>Classifies fake/real news using TF-IDF + Logistic Regression.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>Car Rental Booking System</h3>
+        <p>Rental booking system with authentication and SQL database.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>Personal Expense Tracker</h3>
+        <p>Tracks expenses and generates summary analytics.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>AI Automation Agent</h3>
+        <p>Performs intelligent automated tasks using rule-based AI.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>Online Code Practice Portal</h3>
+        <p>Python-running web IDE inside the browser using Skulpt.</p>
+    </div>
+
+    <div class="project-box">
+        <h3>E-Commerce Frontend</h3>
+        <p>React JS UI with product cards, search, and filters.</p>
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <h2>Contact Me</h2>
+    <div class="line"></div>
+
+    <div class="contact">
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Email">
+        <textarea placeholder="Message"></textarea>
+        <button>Send Message</button>
+    </div>
+</section>
+
+<footer>© 2025 Battula Dhanunjaya | All Rights Reserved</footer>
+
+<!-- JS -->
+<script>
+/* Scroll Progress */
+window.onscroll=()=>{
+    let pos=document.documentElement.scrollTop;
+    let height=document.documentElement.scrollHeight-window.innerHeight;
+    document.getElementById("progressBar").style.width=(pos/height)*100+"%";
+};
+
+/* Dark Mode */
+let mode="dark";
+document.getElementById("modeToggle").onclick=()=>{
+    if(mode=="dark"){
+        document.body.style.filter="invert(1)";
+        mode="light"; modeToggle.innerText="☀ Light Mode";
+    } else {
+        document.body.style.filter="invert(0)";
+        mode="dark"; modeToggle.innerText="🌙 Dark Mode";
+    }
+};
+
+/* Chatbot Toggle */
+function toggleChat(){
+    let c=document.getElementById("chatWindow");
+    c.style.display=c.style.display=="flex"?"none":"flex";
+}
+
+/* Chatbot Logic */
+function sendMsg(){
+    let input=document.getElementById("userInput");
+    let msg=input.value.trim();
+    if(!msg) return;
+
+    let chat=document.getElementById("chatBody");
+    chat.innerHTML+=`<p><b>You:</b> ${msg}</p>`;
+
+    let reply="";
+
+    msg=msg.toLowerCase();
+
+    if(msg.includes("hello")||msg.includes("hi")) reply="Hello! How can I assist you today?";
+    else if(msg.includes("skills")) reply="Your skills include Python, Java, React JS, SQL and AI/ML.";
+    else if(msg.includes("projects")) reply="You have built Fake News Detection, Car Rental System, Expense Tracker, AI Agent, and more.";
+    else if(msg.includes("resume")) reply="You can download your resume using the Resume button on Home section.";
+    else if(msg.includes("contact")) reply="You can reach out via the contact form below.";
+    else reply="I am not sure about that, but I am learning!";
+
+    chat.innerHTML+=`<p><b>Bot:</b> ${reply}</p>`;
+    chat.scrollTop=chat.scrollHeight;
+    input.value="";
+}
+</script>
+
+</body>
+</html>
